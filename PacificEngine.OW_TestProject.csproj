@@ -112,8 +112,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="PacificEngine.OW_CommonResources.Geometry\CircleTest.cs" />
     <Compile Include="PacificEngine.OW_CommonResources.Geometry\CoordinatesTest.cs" />
     <Compile Include="PacificEngine.OW_CommonResources.Geometry\Shape3DTest.cs" />
+    <Compile Include="PacificEngine.OW_CommonResources.Geometry\SphereTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
