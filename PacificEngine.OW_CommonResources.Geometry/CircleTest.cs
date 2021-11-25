@@ -15,14 +15,14 @@ namespace PacificEngine.OW_CommonResources.Geometry
             get
             {
                 yield return new TestCaseData(Vector2.zero, 1f, 0f, new Vector2(1,0)).SetName("getPointOnCircle_Right");
-                yield return new TestCaseData(Vector2.zero, 1f, (float)Math.PI / 2f, new Vector2(0, 1)).SetName("getPointOnCircle_Up");
-                yield return new TestCaseData(Vector2.zero, 1f, (float)Math.PI, new Vector2(-1, 0)).SetName("getPointOnCircle_Left");
-                yield return new TestCaseData(Vector2.zero, 1f, (float)Math.PI * 2f, new Vector2(1, 0)).SetName("getPointOnCircle_FullRight");
-                yield return new TestCaseData(Vector2.zero, 1f, 3f * (float)Math.PI / 2f, new Vector2(0, -1)).SetName("getPointOnCircle_Down");
-                yield return new TestCaseData(Vector2.zero, 1f, -1f * (float)Math.PI / 2f, new Vector2(0, -1)).SetName("getPointOnCircle_NegativeDown");
-                yield return new TestCaseData(Vector2.zero, 1f, -1f * (float)Math.PI, new Vector2(-1, 0)).SetName("getPointOnCircle_NegativeLeft");
-                yield return new TestCaseData(Vector2.zero, 1f, (float)Math.PI / 2f, new Vector2(0, 1)).SetName("getPointOnCircle_NegativeUp");
-                yield return new TestCaseData(Vector2.zero, 1f, (float)Math.PI * -2f, new Vector2(1, 0)).SetName("getPointOnCircle_NegativeRight");
+                yield return new TestCaseData(Vector2.zero, 1f, 90f, new Vector2(0, 1)).SetName("getPointOnCircle_Up");
+                yield return new TestCaseData(Vector2.zero, 1f, 180f, new Vector2(-1, 0)).SetName("getPointOnCircle_Left");
+                yield return new TestCaseData(Vector2.zero, 1f, 270f, new Vector2(0, -1)).SetName("getPointOnCircle_Down");
+                yield return new TestCaseData(Vector2.zero, 1f, 360f, new Vector2(1, 0)).SetName("getPointOnCircle_FullRight");
+                yield return new TestCaseData(Vector2.zero, 1f, -90f, new Vector2(0, -1)).SetName("getPointOnCircle_NegativeDown");
+                yield return new TestCaseData(Vector2.zero, 1f, -180, new Vector2(-1, 0)).SetName("getPointOnCircle_NegativeLeft");
+                yield return new TestCaseData(Vector2.zero, 1f, -270f, new Vector2(0, 1)).SetName("getPointOnCircle_NegativeUp");
+                yield return new TestCaseData(Vector2.zero, 1f, -360f, new Vector2(1, 0)).SetName("getPointOnCircle_NegativeRight");
             }
         }
 

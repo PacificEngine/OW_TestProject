@@ -66,23 +66,23 @@ namespace PacificEngine.OW_CommonResources.Geometry
                 yield return new TestCaseData(Vector3.zero, Vector3.forward, Vector3.zero).SetName("angleXYZ_forward");
                 yield return new TestCaseData(Vector3.zero, Vector3.back, Vector3.zero).SetName("angleXYZ_back");
 
-                yield return new TestCaseData(Vector3.up, Vector3.right, (float)Math.PI / 2f * Vector3.back).SetName("angleXYZ_up_to_right");
-                yield return new TestCaseData(Vector3.one, -1f * Vector3.one, -1f * (float)Math.PI * Vector3.one).SetName("angleXYZ_full_turn");
+                yield return new TestCaseData(Vector3.up, Vector3.right, 270f * Vector3.forward).SetName("angleXYZ_up_to_right");
+                yield return new TestCaseData(Vector3.one, -1f * Vector3.one, 180f * Vector3.one).SetName("angleXYZ_full_turn");
 
-                yield return new TestCaseData(Vector3.forward, new Vector3(1, 0, 1), (float)Math.PI / -4f * Vector3.up).SetName("angleXYZ_forward_halfX");
-                yield return new TestCaseData(Vector3.forward, new Vector3(0, 1, 1), (float)Math.PI / -4f * Vector3.right).SetName("angleXYZ_forward_halfY");
+                yield return new TestCaseData(Vector3.forward, new Vector3(1, 0, 1), 315f * Vector3.up).SetName("angleXYZ_forward_halfX");
+                yield return new TestCaseData(Vector3.forward, new Vector3(0, 1, 1), 315f * Vector3.right).SetName("angleXYZ_forward_halfY");
 
-                yield return new TestCaseData(Vector3.up, new Vector3(1, 1, 0), (float)Math.PI / -4f * Vector3.forward).SetName("angleXYZ_up_halfX");
-                yield return new TestCaseData(Vector3.up, new Vector3(0, 1, 1), (float)Math.PI / 4f * Vector3.right).SetName("angleXYZ_up_halfZ");
+                yield return new TestCaseData(Vector3.up, new Vector3(1, 1, 0), 315f * Vector3.forward).SetName("angleXYZ_up_halfX");
+                yield return new TestCaseData(Vector3.up, new Vector3(0, 1, 1), 45f * Vector3.right).SetName("angleXYZ_up_halfZ");
 
-                yield return new TestCaseData(Vector3.right, new Vector3(1, 1, 0), (float)Math.PI / 4f * Vector3.forward).SetName("angleXYZ_right_halfY");
-                yield return new TestCaseData(Vector3.right, new Vector3(1, 0, 1), (float)Math.PI / 4f * Vector3.up).SetName("angleXYZ_right_halfZ");
+                yield return new TestCaseData(Vector3.right, new Vector3(1, 1, 0), 45f * Vector3.forward).SetName("angleXYZ_right_halfY");
+                yield return new TestCaseData(Vector3.right, new Vector3(1, 0, 1), 45f * Vector3.up).SetName("angleXYZ_right_halfZ");
 
 
-                yield return new TestCaseData(Vector3.up + Vector3.right, Vector3.right, (float)Math.PI / -4f * Vector3.forward).SetName("angleXYZ_45_right");
-                yield return new TestCaseData(Vector3.one, Vector3.right, (float)Math.PI / -4f * (Vector3.up + Vector3.forward)).SetName("angleXYZ_45_to_right");
-                yield return new TestCaseData(Vector3.up, Vector3.one, (float)Math.PI / -4f * (Vector3.left + Vector3.forward)).SetName("angleXYZ_up_to_45");
-                yield return new TestCaseData(Vector3.up, -1f * Vector3.one, new Vector3(3f * (float)Math.PI / -4f, 0, (float)Math.PI / -4f)).SetName("angleXYZ_up_to_-45");
+                yield return new TestCaseData(Vector3.up + Vector3.right, Vector3.right, 315f * Vector3.forward).SetName("angleXYZ_45_right");
+                yield return new TestCaseData(Vector3.one, Vector3.right, 315f * (Vector3.up + Vector3.forward)).SetName("angleXYZ_45_to_right");
+                yield return new TestCaseData(Vector3.up, Vector3.one, new Vector3(45f, 0, 315f)).SetName("angleXYZ_up_to_45");
+                yield return new TestCaseData(Vector3.up, -1f * Vector3.one, new Vector3(225f, 0, 315f)).SetName("angleXYZ_up_to_-45");
             }
         }
 
@@ -98,12 +98,12 @@ namespace PacificEngine.OW_CommonResources.Geometry
                 yield return new TestCaseData(Vector3.zero, Vector3.forward, 0f).SetName("angle3D_forward");
                 yield return new TestCaseData(Vector3.zero, Vector3.back, 0f).SetName("angle3D_back");
 
-                yield return new TestCaseData(Vector3.up, Vector3.right, (float)Math.PI / 2f).SetName("angle3D_up_to_right");
-                yield return new TestCaseData(Vector3.up + Vector3.right, Vector3.right, (float)Math.PI / 4f).SetName("angle3D_45_right");
-                yield return new TestCaseData(Vector3.one, Vector3.right, (float)0.9553f).SetName("angle3D_45_to_right");
-                yield return new TestCaseData(Vector3.up, Vector3.one, (float)0.9553f).SetName("angle3D_up_to_45");
-                yield return new TestCaseData(Vector3.up, -1f * Vector3.one, (float)2.1863f).SetName("angle3D_up_to_-45");
-                yield return new TestCaseData(Vector3.one, -1f * Vector3.one, (float)Math.PI).SetName("angle3D_full_turn");
+                yield return new TestCaseData(Vector3.up, Vector3.right, 90f).SetName("angle3D_up_to_right");
+                yield return new TestCaseData(Vector3.up + Vector3.right, Vector3.right, 45f).SetName("angle3D_45_right");
+                yield return new TestCaseData(Vector3.one, Vector3.right, 54.7346582f).SetName("angle3D_45_to_right");
+                yield return new TestCaseData(Vector3.up, Vector3.one, 54.7346582f).SetName("angle3D_up_to_45");
+                yield return new TestCaseData(Vector3.up, -1f * Vector3.one, 125.265763f).SetName("angle3D_up_to_-45");
+                yield return new TestCaseData(Vector3.one, -1f * Vector3.one, 180f).SetName("angle3D_full_turn");
             }
         }
 
@@ -112,11 +112,11 @@ namespace PacificEngine.OW_CommonResources.Geometry
             get
             {
                 yield return new TestCaseData(Vector3.zero, Vector3.zero, Vector3.zero).SetName("rotatePoint_zero");
-                yield return new TestCaseData(Vector3.right, Vector3.up * (float)Math.PI / 2f, Vector3.back).SetName("rotatePoint_right_to_up");
-                yield return new TestCaseData(Vector3.up, Vector3.right * (float)Math.PI / 2f, Vector3.forward).SetName("rotatePoint_up_to_right");
-                yield return new TestCaseData(Vector3.left, Vector3.down * (float)Math.PI / 2f, Vector3.back).SetName("rotatePoint_left_to_down");
-                yield return new TestCaseData(Vector3.right, Vector3.down * (float)Math.PI / 2f, Vector3.forward).SetName("rotatePoint_right_to_down");
-                yield return new TestCaseData(Vector3.back, Vector3.down * (float)Math.PI / 2f, Vector3.right).SetName("rotatePoint_back_to_down");
+                yield return new TestCaseData(Vector3.right, Vector3.up * 90f, Vector3.back).SetName("rotatePoint_right_to_up");
+                yield return new TestCaseData(Vector3.up, Vector3.right * 90f, Vector3.forward).SetName("rotatePoint_up_to_right");
+                yield return new TestCaseData(Vector3.left, Vector3.down * 90f, Vector3.back).SetName("rotatePoint_left_to_down");
+                yield return new TestCaseData(Vector3.right, Vector3.down * 90f, Vector3.forward).SetName("rotatePoint_right_to_down");
+                yield return new TestCaseData(Vector3.back, Vector3.down * 90f, Vector3.right).SetName("rotatePoint_back_to_down");
             }
         }
 
