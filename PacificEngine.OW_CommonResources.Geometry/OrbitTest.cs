@@ -39,7 +39,7 @@ namespace PacificEngine.OW_CommonResources.Geometry
             }
         }
 
-        public static IEnumerable<TestCaseData> getPositionAndVelocityTestCases
+        public static IEnumerable<TestCaseData> toKeplerCoordinatestoCartesianTestCases
         {
             get
             {
@@ -49,18 +49,57 @@ namespace PacificEngine.OW_CommonResources.Geometry
             }
         }
 
-        [TestCaseSource("toKeplerCoordinatesTestCases")]
-        public void toKeplerCoordinates_toCartesian(float gravityConstant, float mass, float exponent, float timeSinceStart, Vector3 startPosition, Vector3 startVelocity, Orbit.KeplerCoordinates expected)
+        public static IEnumerable<TestCaseData> toCartesiantoKeplerCoordinatesTestCases
         {
-            compare(expected, Orbit.toKeplerCoordinates(gravityConstant, mass, exponent, timeSinceStart, startPosition, startVelocity));
+            get
+            {
+                var sunMass = (float)4.0005E+11;
+                var hourglassMass = 800000f; // Mass / 2d (beacuase it is twice as far)
+                var timberHearthMass = 3000000f;
+                var brittleHollowMass = 3000000f;
+                var giantDeepMass = 21780000f;
+                yield return new TestCaseData((float)0.001, (float)sunMass, 2f, 0f, new Orbit.KeplerCoordinates(0.1523f, 7752.49512f, 113.7459f, 220.1543f, 341.5999f, 0.88239f)).SetName("toCartesian_toKeplerCoordinates_SunStationRandomExample_1");
+                yield return new TestCaseData((float)0.001, (float)sunMass, 2f, 0f, new Orbit.KeplerCoordinates(0.5115f, 5136.91211f, 18.2608f, 328.5999f, 152.8381f, 107.96543f)).SetName("toCartesian_toKeplerCoordinates_HourglassTwinsRandomExample_1");
+                yield return new TestCaseData((float)0.001, (float)hourglassMass, 1f, 0f, new Orbit.KeplerCoordinates(0, 250, 90, 233.8092f, 180, 41.86327f)).SetName("toCartesian_toKeplerCoordinates_AshTwinExample");
+                yield return new TestCaseData((float)0.001, (float)hourglassMass, 1f, 0f, new Orbit.KeplerCoordinates(0, 250, 90, 53.80923f, 180, 41.86327f)).SetName("toCartesian_toKeplerCoordinates_EmberTwinExample");
+                yield return new TestCaseData((float)0.001, (float)sunMass, 2f, 0f, new Orbit.KeplerCoordinates(0.3443f, 623.103638f, 135.8287f, 315.4913f, 267.1545f, 0.50635f)).SetName("toCartesian_toKeplerCoordinates_TimberHearthRandomExample_1");
+                yield return new TestCaseData((float)0.001, (float)sunMass, 2f, 0f, new Orbit.KeplerCoordinates(0.1113f, 540.427429f, 135.7068f, 294.9969f, 267.0781f, 0.94821f)).SetName("toCartesian_toKeplerCoordinates_TimberHearthRandomExample_2");
+                yield return new TestCaseData((float)0.001, (float)timberHearthMass, 1f, 0f, new Orbit.KeplerCoordinates(0.1179f, 637.800293f, 80.5333f, 341.0094f, 94.4544f, 169.08463f)).SetName("toCartesian_toKeplerCoordinates_TimberHearthProbeRandomExample_1");
+                yield return new TestCaseData((float)0.001, (float)timberHearthMass, 1f, 0f, new Orbit.KeplerCoordinates(0.0363f, 630.545593f, 80.5335f, 1.8984f, 94.4488f, 17.42552f)).SetName("toCartesian_toKeplerCoordinates_TimberHearthProbeRandomExample_2");
+                yield return new TestCaseData((float)0.001, (float)timberHearthMass, 1f, 0f, new Orbit.KeplerCoordinates(0.0361f, 675.51178f, 155.9968f, 152.4014f, 65.311f, 118.72765f)).SetName("toCartesian_toKeplerCoordinates_AttlerockRandomExample_1");
+                yield return new TestCaseData((float)0.001, (float)sunMass, 2f, 0f, new Orbit.KeplerCoordinates(0.0006f, 11690.8877f, 90, 259.9969f, 0, 99.21703f)).SetName("toCartesian_toKeplerCoordinates_BrittleHollowExample_1");
+                yield return new TestCaseData((float)0.001, (float)brittleHollowMass, 1f, 0f, new Orbit.KeplerCoordinates(0.2025f, 695.317505f, 141.9887f, 193.9186f, 52.5955f, 236.01967f)).SetName("toCartesian_toKeplerCoordinates_HollowLanternRandomExample_1");
+                yield return new TestCaseData((float)0.001, (float)brittleHollowMass, 1f, 0f, new Orbit.KeplerCoordinates(0.174f, 455.326263f, 109.2665f, 88.6078f, 53.2425f, 10.27084f)).SetName("toCartesian_toKeplerCoordinates_HollowLanternRandomExample_2");
+                yield return new TestCaseData((float)0.001, (float)sunMass, 2f, 0f, new Orbit.KeplerCoordinates(0.1229f, 4526.54834f, 17.8675f, 3.9356f, 230.6604f, 8.71545f)).SetName("toCartesian_toKeplerCoordinates_GiantsDeepRandomExample_1");
+                yield return new TestCaseData((float)0.001, (float)giantDeepMass, 1f, 0f, new Orbit.KeplerCoordinates(0.2787f, 2042.57397f, 0.6094f, 257.7437f, 310.6645f, 1085.22839f)).SetName("toCartesian_toKeplerCoordinates_ProbeCannonRandomExample_1");
+                yield return new TestCaseData((float)0.001, (float)sunMass, 2f, 0f, new Orbit.KeplerCoordinates(0.0008f, 9852.23438f, 46.3357f, 155.0664f, 128.528f, 1085.7738f)).SetName("toCartesian_toKeplerCoordinates_DarkBrambleRandomExample_1");
+            }
         }
 
-        [TestCaseSource("getPositionAndVelocityTestCases")]
+        [TestCaseSource("toKeplerCoordinatesTestCases")]
+        public void toKeplerCoordinates(float gravityConstant, float mass, float exponent, float timeSinceStart, Vector3 startPosition, Vector3 startVelocity, Orbit.KeplerCoordinates expected)
+        {
+            var gravity = new Orbit.Gravity(gravityConstant, exponent, mass);
+            compare(expected, Orbit.toKeplerCoordinates(gravity, timeSinceStart, startPosition, startVelocity));
+        }
+
+        [TestCaseSource("toKeplerCoordinatestoCartesianTestCases")]
         public void toKeplerCoordinates_toCartesian(float gravityConstant, float mass, float exponent, float timeSinceStart, Vector3 startPosition, Vector3 startVelocity)
         {
-            var kepler = Orbit.toKeplerCoordinates(gravityConstant, mass, exponent, timeSinceStart, startPosition, startVelocity);
-            var actual = Orbit.toCartesian(gravityConstant, mass, exponent, timeSinceStart, kepler);
+            var gravity = new Orbit.Gravity(gravityConstant, exponent, mass);
+            var kepler = Orbit.toKeplerCoordinates(gravity, timeSinceStart, startPosition, startVelocity);
+            var actual = Orbit.toCartesian(gravity, timeSinceStart, kepler);
             compare(Tuple.Create(startPosition, startVelocity), actual);
+        }
+
+        [TestCaseSource("toCartesiantoKeplerCoordinatesTestCases")]
+        public void toCartesian_toKeplerCoordinates(float gravityConstant, float mass, float exponent, float timeSinceStart, Orbit.KeplerCoordinates startKepler)
+        {
+            var gravity = new Orbit.Gravity(gravityConstant, exponent, mass);
+            var cartesian = Orbit.toCartesian(gravity, timeSinceStart, startKepler);
+            //var cartesian = Orbit.toCartesianTrueAnomaly(gravity, startKepler.eccentricity, startKepler.semiMajorRadius, startKepler.inclinationAngle, startKepler.periapseAngle, startKepler.ascendingAngle, 150);
+            var actual = Orbit.toKeplerCoordinates(gravity, timeSinceStart, cartesian.Item1, cartesian.Item2);
+            compare(startKepler, actual);
         }
 
         private void compare(Tuple<Vector3, Vector3> expected, Tuple<Vector3, Vector3> actual)
