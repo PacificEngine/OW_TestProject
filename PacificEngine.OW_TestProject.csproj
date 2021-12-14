@@ -115,6 +115,7 @@
     <Compile Include="PacificEngine.OW_CommonResources.Geometry\CircleTest.cs" />
     <Compile Include="PacificEngine.OW_CommonResources.Geometry\CoordinatesTest.cs" />
     <Compile Include="PacificEngine.OW_CommonResources.Geometry\EllipseTest.cs" />
+    <Compile Include="PacificEngine.OW_CommonResources.Geometry\KeplerTest.cs" />
     <Compile Include="PacificEngine.OW_CommonResources.Geometry\OrbitTest.cs" />
     <Compile Include="PacificEngine.OW_CommonResources.Geometry\Shape3DTest.cs" />
     <Compile Include="PacificEngine.OW_CommonResources.Geometry\SphereTest.cs" />
