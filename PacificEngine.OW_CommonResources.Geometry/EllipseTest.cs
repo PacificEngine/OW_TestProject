@@ -12,7 +12,7 @@ namespace PacificEngine.OW_CommonResources.Geometry
     [TestFixture]
     public class EllipseTest
     {
-        public const float ERROR_PERCENTAGE = 0.001f;
+        public const float ERROR_PERCENTAGE = 0.00025f;
 
         public static IEnumerable<TestCaseData> fromPolarData
         {
@@ -56,9 +56,9 @@ namespace PacificEngine.OW_CommonResources.Geometry
         {
             get
             {
-                for (int eccentricity = 0; eccentricity < 100; eccentricity += 5)
+                for (float eccentricity = 0; eccentricity < 1; eccentricity += 0.05f)
                 {
-                    for (int semiMajorRadius = 5; semiMajorRadius < 500; semiMajorRadius += 50)
+                    for (float semiMajorRadius = 5; semiMajorRadius < 500; semiMajorRadius += 50)
                     {
                         yield return new TestCaseData(semiMajorRadius, eccentricity);
                     }
@@ -84,7 +84,7 @@ namespace PacificEngine.OW_CommonResources.Geometry
         {
             Helper.helper = new MockModHelper();
 
-            var ellipse = Ellipse.fromMajorRadiusAndMinorRadius(semiMajorRadius, eccentricity);
+            var ellipse = Ellipse.fromMajorRadiusAndEccentricity(semiMajorRadius, eccentricity);
             compare("fromMajorRadiusAndMinorRadius", ellipse, () => Ellipse.fromMajorRadiusAndMinorRadius(ellipse.semiMajorRadius, ellipse.semiMinorRadius));
         }
 
@@ -93,7 +93,7 @@ namespace PacificEngine.OW_CommonResources.Geometry
         {
             Helper.helper = new MockModHelper();
 
-            var ellipse = Ellipse.fromMajorRadiusAndMinorRadius(semiMajorRadius, eccentricity);
+            var ellipse = Ellipse.fromMajorRadiusAndEccentricity(semiMajorRadius, eccentricity);
             compare("fromMajorRadiusAndLatusRectum", ellipse, () => Ellipse.fromMajorRadiusAndLatusRectum(ellipse.semiMajorRadius, ellipse.semiLatusRectum));
         }
 
@@ -102,7 +102,7 @@ namespace PacificEngine.OW_CommonResources.Geometry
         {
             Helper.helper = new MockModHelper();
 
-            var ellipse = Ellipse.fromMajorRadiusAndMinorRadius(semiMajorRadius, eccentricity);
+            var ellipse = Ellipse.fromMajorRadiusAndEccentricity(semiMajorRadius, eccentricity);
             compare("fromMajorRadiusAndEccentricity", ellipse, () => Ellipse.fromMajorRadiusAndEccentricity(ellipse.semiMajorRadius, ellipse.eccentricity));
         }
 
@@ -112,7 +112,7 @@ namespace PacificEngine.OW_CommonResources.Geometry
         {
             Helper.helper = new MockModHelper();
 
-            var ellipse = Ellipse.fromMajorRadiusAndMinorRadius(semiMajorRadius, eccentricity);
+            var ellipse = Ellipse.fromMajorRadiusAndEccentricity(semiMajorRadius, eccentricity);
             compare("fromMajorRadiusAndFoci", ellipse, () => Ellipse.fromMajorRadiusAndFoci(ellipse.semiMajorRadius, ellipse.foci));
         }
 
@@ -121,7 +121,7 @@ namespace PacificEngine.OW_CommonResources.Geometry
         {
             Helper.helper = new MockModHelper();
 
-            var ellipse = Ellipse.fromMajorRadiusAndMinorRadius(semiMajorRadius, eccentricity);
+            var ellipse = Ellipse.fromMajorRadiusAndEccentricity(semiMajorRadius, eccentricity);
             compare("fromMajorRadiusAndApogee", ellipse, () => Ellipse.fromMajorRadiusAndApogee(ellipse.semiMajorRadius, ellipse.apogee));
         }
 
@@ -130,7 +130,7 @@ namespace PacificEngine.OW_CommonResources.Geometry
         {
             Helper.helper = new MockModHelper();
 
-            var ellipse = Ellipse.fromMajorRadiusAndMinorRadius(semiMajorRadius, eccentricity);
+            var ellipse = Ellipse.fromMajorRadiusAndEccentricity(semiMajorRadius, eccentricity);
             compare("fromMajorRadiusAndPerigee", ellipse, () => Ellipse.fromMajorRadiusAndPerigee(ellipse.semiMajorRadius, ellipse.perigee));
         }
 
@@ -139,7 +139,7 @@ namespace PacificEngine.OW_CommonResources.Geometry
         {
             Helper.helper = new MockModHelper();
 
-            var ellipse = Ellipse.fromMajorRadiusAndMinorRadius(semiMajorRadius, eccentricity);
+            var ellipse = Ellipse.fromMajorRadiusAndEccentricity(semiMajorRadius, eccentricity);
             compare("fromMinorRadiusAndLatusRectum", ellipse, () => Ellipse.fromMinorRadiusAndLatusRectum(ellipse.semiMinorRadius, ellipse.semiLatusRectum));
         }
 
@@ -148,7 +148,7 @@ namespace PacificEngine.OW_CommonResources.Geometry
         {
             Helper.helper = new MockModHelper();
 
-            var ellipse = Ellipse.fromMajorRadiusAndMinorRadius(semiMajorRadius, eccentricity);
+            var ellipse = Ellipse.fromMajorRadiusAndEccentricity(semiMajorRadius, eccentricity);
             compare("fromMinorRadiusAndEccentricity", ellipse, () => Ellipse.fromMinorRadiusAndEccentricity(ellipse.semiMinorRadius, ellipse.eccentricity));
         }
 
@@ -157,16 +157,17 @@ namespace PacificEngine.OW_CommonResources.Geometry
         {
             Helper.helper = new MockModHelper();
 
-            var ellipse = Ellipse.fromMajorRadiusAndMinorRadius(semiMajorRadius, eccentricity);
+            var ellipse = Ellipse.fromMajorRadiusAndEccentricity(semiMajorRadius, eccentricity);
             compare("fromMinorRadiusAndFoci", ellipse, () => Ellipse.fromMinorRadiusAndFoci(ellipse.semiMinorRadius, ellipse.foci));
         }
 
+        /*
         [TestCaseSource("generateEllipses")]
         public void fromMinorRadiusAndApogee(float semiMajorRadius, float eccentricity)
         {
             Helper.helper = new MockModHelper();
 
-            var ellipse = Ellipse.fromMajorRadiusAndMinorRadius(semiMajorRadius, eccentricity);
+            var ellipse = Ellipse.fromMajorRadiusAndEccentricity(semiMajorRadius, eccentricity);
             compare("fromMinorRadiusAndApogee", ellipse, () => Ellipse.fromMinorRadiusAndApogee(ellipse.semiMinorRadius, ellipse.apogee));
         }
 
@@ -175,34 +176,37 @@ namespace PacificEngine.OW_CommonResources.Geometry
         {
             Helper.helper = new MockModHelper();
 
-            var ellipse = Ellipse.fromMajorRadiusAndMinorRadius(semiMajorRadius, eccentricity);
+            var ellipse = Ellipse.fromMajorRadiusAndEccentricity(semiMajorRadius, eccentricity);
             compare("fromMinorRadiusAndPerigee", ellipse, () => Ellipse.fromMinorRadiusAndPerigee(ellipse.semiMinorRadius, ellipse.perigee));
         }
+        */
 
         [TestCaseSource("generateEllipses")]
         public void fromLatusRectumAndEccentricity(float semiMajorRadius, float eccentricity)
         {
             Helper.helper = new MockModHelper();
 
-            var ellipse = Ellipse.fromMajorRadiusAndMinorRadius(semiMajorRadius, eccentricity);
+            var ellipse = Ellipse.fromMajorRadiusAndEccentricity(semiMajorRadius, eccentricity);
             compare("fromLatusRectumAndEccentricity", ellipse, () => Ellipse.fromLatusRectumAndEccentricity(ellipse.semiLatusRectum, ellipse.eccentricity));
         }
 
+        /*
         [TestCaseSource("generateEllipses")]
         public void fromLatusRectumAndFoci(float semiMajorRadius, float eccentricity)
         {
             Helper.helper = new MockModHelper();
 
-            var ellipse = Ellipse.fromMajorRadiusAndMinorRadius(semiMajorRadius, eccentricity);
+            var ellipse = Ellipse.fromMajorRadiusAndEccentricity(semiMajorRadius, eccentricity);
             compare("fromLatusRectumAndFoci", ellipse, () => Ellipse.fromLatusRectumAndFoci(ellipse.semiLatusRectum, ellipse.foci));
         }
+        */
 
         [TestCaseSource("generateEllipses")]
         public void fromLatusRectumAndApogee(float semiMajorRadius, float eccentricity)
         {
             Helper.helper = new MockModHelper();
 
-            var ellipse = Ellipse.fromMajorRadiusAndMinorRadius(semiMajorRadius, eccentricity);
+            var ellipse = Ellipse.fromMajorRadiusAndEccentricity(semiMajorRadius, eccentricity);
             compare("fromLatusRectumAndApogee", ellipse, () => Ellipse.fromLatusRectumAndApogee(ellipse.semiLatusRectum, ellipse.apogee));
         }
 
@@ -211,7 +215,7 @@ namespace PacificEngine.OW_CommonResources.Geometry
         {
             Helper.helper = new MockModHelper();
 
-            var ellipse = Ellipse.fromMajorRadiusAndMinorRadius(semiMajorRadius, eccentricity);
+            var ellipse = Ellipse.fromMajorRadiusAndEccentricity(semiMajorRadius, eccentricity);
             compare("fromLatusRectumAndPerigee", ellipse, () => Ellipse.fromLatusRectumAndPerigee(ellipse.semiLatusRectum, ellipse.perigee));
         }
 
@@ -220,8 +224,11 @@ namespace PacificEngine.OW_CommonResources.Geometry
         {
             Helper.helper = new MockModHelper();
 
-            var ellipse = Ellipse.fromMajorRadiusAndMinorRadius(semiMajorRadius, eccentricity);
-            compare("fromEccentricityAndFoci", ellipse, () => Ellipse.fromEccentricityAndFoci(ellipse.eccentricity, ellipse.foci));
+            if (eccentricity > 0)
+            {
+                var ellipse = Ellipse.fromMajorRadiusAndEccentricity(semiMajorRadius, eccentricity);
+                compare("fromEccentricityAndFoci", ellipse, () => Ellipse.fromEccentricityAndFoci(ellipse.eccentricity, ellipse.foci));
+            }
         }
 
         [TestCaseSource("generateEllipses")]
@@ -229,7 +236,7 @@ namespace PacificEngine.OW_CommonResources.Geometry
         {
             Helper.helper = new MockModHelper();
 
-            var ellipse = Ellipse.fromMajorRadiusAndMinorRadius(semiMajorRadius, eccentricity);
+            var ellipse = Ellipse.fromMajorRadiusAndEccentricity(semiMajorRadius, eccentricity);
             compare("fromEccentricityAndApogee", ellipse, () => Ellipse.fromEccentricityAndApogee(ellipse.eccentricity, ellipse.apogee));
         }
 
@@ -238,7 +245,7 @@ namespace PacificEngine.OW_CommonResources.Geometry
         {
             Helper.helper = new MockModHelper();
 
-            var ellipse = Ellipse.fromMajorRadiusAndMinorRadius(semiMajorRadius, eccentricity);
+            var ellipse = Ellipse.fromMajorRadiusAndEccentricity(semiMajorRadius, eccentricity);
             compare("fromEccentricityAndPerigee", ellipse, () => Ellipse.fromEccentricityAndPerigee(ellipse.eccentricity, ellipse.perigee));
         }
 
@@ -247,7 +254,7 @@ namespace PacificEngine.OW_CommonResources.Geometry
         {
             Helper.helper = new MockModHelper();
 
-            var ellipse = Ellipse.fromMajorRadiusAndMinorRadius(semiMajorRadius, eccentricity);
+            var ellipse = Ellipse.fromMajorRadiusAndEccentricity(semiMajorRadius, eccentricity);
             compare("fromFociAndApogee", ellipse, () => Ellipse.fromFociAndApogee(ellipse.foci, ellipse.apogee));
         }
 
@@ -256,7 +263,7 @@ namespace PacificEngine.OW_CommonResources.Geometry
         {
             Helper.helper = new MockModHelper();
 
-            var ellipse = Ellipse.fromMajorRadiusAndMinorRadius(semiMajorRadius, eccentricity);
+            var ellipse = Ellipse.fromMajorRadiusAndEccentricity(semiMajorRadius, eccentricity);
             compare("fromFociAndPerigee", ellipse, () => Ellipse.fromFociAndPerigee(ellipse.foci, ellipse.perigee));
         }
 
@@ -265,14 +272,14 @@ namespace PacificEngine.OW_CommonResources.Geometry
         {
             Helper.helper = new MockModHelper();
 
-            var ellipse = Ellipse.fromMajorRadiusAndMinorRadius(semiMajorRadius, eccentricity);
+            var ellipse = Ellipse.fromMajorRadiusAndEccentricity(semiMajorRadius, eccentricity);
             compare("fromApogeeAndPerigee", ellipse, () => Ellipse.fromApogeeAndPerigee(ellipse.apogee, ellipse.perigee));
         }
 
         private void compare(Vector2 expected, Vector2 actual)
         {
-            Assert.AreEqual(expected.x, actual.x, ERROR_PERCENTAGE, "Does not match Expected (" + expected.x + "," + expected.y + ") Actual (" + actual.x + "," + actual.y + ")");
-            Assert.AreEqual(expected.y, actual.y, ERROR_PERCENTAGE, "Does not match Expected (" + expected.x + "," + expected.y + ") Actual (" + actual.x + "," + actual.y + ")");
+            Assert.AreEqual(expected.x, actual.x, Math.Max(expected.x * ERROR_PERCENTAGE, ERROR_PERCENTAGE), "Does not match Expected (" + expected.x + "," + expected.y + ") Actual (" + actual.x + "," + actual.y + ")");
+            Assert.AreEqual(expected.y, actual.y, Math.Max(expected.y * ERROR_PERCENTAGE, ERROR_PERCENTAGE), "Does not match Expected (" + expected.x + "," + expected.y + ") Actual (" + actual.x + "," + actual.y + ")");
         }
 
         private void compare(string name, Ellipse expected, Func<Ellipse> createEllipse)
@@ -288,7 +295,7 @@ namespace PacificEngine.OW_CommonResources.Geometry
 
         private void compare(string message, Ellipse expected, Ellipse actual, Func<Ellipse, float> tester)
         {
-            Assert.AreEqual(tester.Invoke(expected), tester.Invoke(actual), ERROR_PERCENTAGE, $"{message} Expected: {expected}, Actual: {actual}");
+            Assert.AreEqual(tester.Invoke(expected), tester.Invoke(actual), Math.Max(tester.Invoke(expected) * ERROR_PERCENTAGE, ERROR_PERCENTAGE), $"{message} Expected: {expected}, Actual: {actual}");
         }
     }
 }
