@@ -69,7 +69,7 @@ namespace PacificEngine.OW_CommonResources.Geometry
         [TestCaseSource("fromPolarData")]
         public void fromPolar(float angle, Vector2 radius, Vector2 expected)
         {
-            compare(expected, Ellipse.fromMajorRadiusAndMinorRadius(radius.x, radius.y).getCoordinatesFromCenterAngle(angle));
+            compare(expected, Ellipse.fromMajorRadiusAndMinorRadius(radius.x, radius.y).getCoordinatesFromCenter(angle));
         }
 
 
