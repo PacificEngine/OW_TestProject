@@ -22,7 +22,4 @@
       <HintPath>$(OuterWildsModsDirectory)\PacificEngine.OW_CommonResources\PacificEngine.OW_CommonResources.dll</HintPath>
     </Reference>
   </ItemGroup>
-  <ItemGroup>
-    <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
 </Project>
